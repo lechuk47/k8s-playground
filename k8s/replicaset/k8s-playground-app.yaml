@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: k8s-playground
+  labels:
+    app: k8s-playground
+    tier: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: web
+  template:
+    metadata:
+      labels:
+        tier: web
+    spec:
+      containers:
+      - name: k8s-playground-app
+        image: docker.io/lechuk/k8s-playground-app:v1
+        ports:
+          - containerPort: 80
